@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import {
   NavigationExperimental,
   View,
+  Text,
   StyleSheet
 } from 'react-native';
 const {
@@ -11,6 +12,7 @@ const {
 } = NavigationExperimental;
 import AppRouter from '../AppRouter';
 import TabBar from '../../components/TabBar';
+import ColorView from '../../modules/colors/ColorView';
 
 // Customize bottom tab bar height here if desired
 const TAB_BAR_HEIGHT = 0;
@@ -52,6 +54,11 @@ const NavigationView = React.createClass({
   renderScene(sceneProps) {
     // render scene and apply padding to cover
     // for app bar and navigation bar
+      // const {route} = sceneProps.scene.route
+      console.log(sceneProps.scene.route);
+      if (sceneProps.scene.route.key === 'Color') {
+        return (<ColorView index={1} dispatch={() => this.render()} emoji={sceneProps.scene.route.emoji} />);
+      }
     return (
       <View style={styles.sceneContainer}>
         {AppRouter(sceneProps)}
@@ -89,6 +96,9 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     borderBottomWidth: 0,
   },
+  text: {
+    color: 'black'
+  }
 });
 
 export default NavigationView;

@@ -9,6 +9,7 @@ import {
   View,
   processColor
 } from 'react-native';
+import FriendList from '../../components/FriendList';
 
 const CounterView = React.createClass({
   propTypes: {
@@ -27,10 +28,12 @@ const CounterView = React.createClass({
   random() {
     this.props.dispatch(CounterState.random());
   },
-  bored() {
+  bored(friend) {
+    console.log(friend);
     this.props.dispatch(NavigationState.pushRoute({
       key: 'Color',
-      title: 'Christopher Wohlfarth'
+      title: friend.friend.title,
+      emoji: friend.friend.emoji
     }));
   },
 
@@ -62,13 +65,7 @@ const CounterView = React.createClass({
 
     return (
       <View style={styles.container}>
-
-        <TouchableOpacity onPress={this.bored} accessible={true}>
-          <Text style={styles.text}>
-            {'Navigate to detail page'}
-          </Text>
-        </TouchableOpacity>
-    
+        <FriendList boredyo={(friend) => this.bored(friend)} />
       </View>
     );
   }
@@ -84,8 +81,8 @@ const circle = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     backgroundColor: '#0098A0',
     marginTop: -65,
   },

@@ -40,7 +40,7 @@ const ColorView = React.createClass({
     return (
       <View style={styles.container}>
         <Text style={styles.text}>
-          Emoji
+          {this.props.emoji}
         </Text>
       </View>
     );
