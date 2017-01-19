@@ -38,9 +38,9 @@ const ColorView = React.createClass({
     const index = this.props.index;
     const text = `View #${index}`;
     return (
-      <View style={[styles.container, {backgroundColor: this.state.background}]}>
-        <Text onPress={this.onNextPress}>
-          {text}
+      <View style={styles.container}>
+        <Text style={styles.text}>
+          Emoji
         </Text>
       </View>
     );
@@ -51,8 +51,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
-  }
+    alignItems: 'center',
+    backgroundColor: '#AD0096',
+    marginTop: -65,
+  },
+  text: {
+    color: '#ffffff'
+  },
 });
 
 export default ColorView;

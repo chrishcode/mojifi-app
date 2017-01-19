@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Image,
   Text,
-  View
+  View,
+  processColor
 } from 'react-native';
 
 const CounterView = React.createClass({
@@ -29,7 +30,7 @@ const CounterView = React.createClass({
   bored() {
     this.props.dispatch(NavigationState.pushRoute({
       key: 'Color',
-      title: 'Color Screen'
+      title: 'Christopher Wohlfarth'
     }));
   },
 
@@ -62,34 +63,12 @@ const CounterView = React.createClass({
     return (
       <View style={styles.container}>
 
-        {this.renderUserInfo()}
-
-        <TouchableOpacity
-          onPress={this.increment}
-          style={[styles.counterButton, loadingStyle]}>
-          <Text style={styles.counter}>
-            {this.props.counter}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={this.reset}>
-          <Text style={styles.linkButton}>
-            Reset
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={this.random}>
-          <Text style={styles.linkButton}>
-            Random
-          </Text>
-        </TouchableOpacity>
-
         <TouchableOpacity onPress={this.bored} accessible={true}>
-          <Text style={styles.linkButton}>
-            {'I\'m bored!'}
+          <Text style={styles.text}>
+            {'Navigate to detail page'}
           </Text>
         </TouchableOpacity>
-
+    
       </View>
     );
   }
@@ -107,7 +86,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white'
+    backgroundColor: '#0098A0',
+    marginTop: -65,
+  },
+  text: {
+    color: '#ffffff'
   },
   userContainer: {
     justifyContent: 'center',

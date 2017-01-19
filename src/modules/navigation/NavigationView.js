@@ -13,7 +13,7 @@ import AppRouter from '../AppRouter';
 import TabBar from '../../components/TabBar';
 
 // Customize bottom tab bar height here if desired
-const TAB_BAR_HEIGHT = 50;
+const TAB_BAR_HEIGHT = 0;
 
 const NavigationView = React.createClass({
   propTypes: {
@@ -36,12 +36,12 @@ const NavigationView = React.createClass({
   // NavigationHeader.title accepts a prop textStyle
   renderHeader(sceneProps) {
     return (
-      <NavigationHeader
+      <NavigationHeader style={styles.header}
         {...sceneProps}
         onNavigateBack={this.props.onNavigateBack}
         renderTitleComponent={() => {
           return (
-            <NavigationHeader.Title>
+            <NavigationHeader.Title textStyle={{color: '#ffffff'}}>
               {sceneProps.scene.route.title}
             </NavigationHeader.Title>
           );
@@ -64,18 +64,12 @@ const NavigationView = React.createClass({
     const scenes = this.props.navigationState[tabKey];
     return (
       <View style={styles.container}>
-        <NavigationCardStack
+      <NavigationCardStack
           key={'stack_' + tabKey}
           onNavigateBack={this.props.onNavigateBack}
           navigationState={scenes}
           renderHeader={this.renderHeader}
           renderScene={this.renderScene}
-        />
-        <TabBar
-          height={TAB_BAR_HEIGHT}
-          tabs={tabs}
-          currentTabIndex={tabs.index}
-          switchTab={this.props.switchTab}
         />
       </View>
     );
@@ -84,12 +78,17 @@ const NavigationView = React.createClass({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: 'white',
   },
   sceneContainer: {
     flex: 1,
-    marginBottom: TAB_BAR_HEIGHT
-  }
+    marginBottom: TAB_BAR_HEIGHT,
+  },
+  header: {
+    backgroundColor: "transparent",
+    borderBottomWidth: 0,
+  },
 });
 
 export default NavigationView;
