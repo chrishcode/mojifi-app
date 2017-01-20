@@ -10,11 +10,21 @@ import {
   Image
 } from 'react-native';
 import _ from 'lodash';
+import Emoji from 'react-native-emoji';
+const emojiName = require("emoji-name-map");
 
 const timeline = [
   {title: 'Henrik Lindblom', emoji: 'coffee'},
   {title: 'Alexander Brandemyr', emoji: 'heart'},
-  {title: 'Kenny Lindblom', emoji: 'cow'}
+  {title: 'Kenny Lindblom', emoji: 'fist'},
+  {title: 'Kenny Lindblom', emoji: 'monkey'},
+  {title: 'Kenny Lindblom', emoji: 'frog'},
+  {title: 'Kenny Lindblom', emoji: 'smile'},
+  {title: 'Kenny Lindblom', emoji: 'truck'},
+  {title: 'Kenny Lindblom', emoji: 'computer'},
+  {title: 'Kenny Lindblom', emoji: 'pig'},
+  {title: 'Kenny Lindblom', emoji: 'apple'},
+  {title: 'Kenny Lindblom', emoji: ''}
 ]
 
 class FriendList extends Component {
@@ -41,7 +51,7 @@ class FriendList extends Component {
           <View style={styles.episodeInfo}>
             <View style={styles.topInfo}>
               <Text style={styles.title}>{friend.title}</Text>
-              <Text style={styles.timestamp}>{friend.emoji}</Text>
+              <Text style={styles.emoji}>{emojiName.get(friend.emoji)}</Text>
             </View>
           </View>
         </View>
@@ -49,12 +59,12 @@ class FriendList extends Component {
     )
   }
   render() {
+    // renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
     return (
       <ListView
         style={{marginTop: 60}}
         dataSource={this.state.timelineDataSource} 
         renderRow={(friend) => { return this._renderFriendsRow(friend) }}
-        renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
       />
     );
   }
@@ -66,7 +76,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    height: 100,
+    height: 70,
+    // backgroundColor: 'gray'
   },
 
   episodeWrap: {
@@ -90,15 +101,16 @@ const styles = StyleSheet.create({
 
   title: {
     fontWeight: "bold",
-    color: "#000000",
-    fontFamily: "Helvetica Neue",
-    fontSize: 13,
+    color: "#ffffff",
+    fontFamily: "Futura",
+    fontSize: 15,
+    marginLeft: 10,
   },
 
-  timestamp: {
+  emoji: {
     color: "#ffffff",
-    fontFamily: "Helvetica Neue",
-    fontSize: 13,
+    fontFamily: "Futura",
+    fontSize: 28,
   },
 
   description: {
@@ -124,7 +136,7 @@ const styles = StyleSheet.create({
   separator: {
     flex: 1,
     height: 1,
-    backgroundColor: '#f5f4f4',
+    backgroundColor: '#ffffff',
   },
 });
 

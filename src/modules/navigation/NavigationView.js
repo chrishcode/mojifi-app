@@ -43,7 +43,7 @@ const NavigationView = React.createClass({
         onNavigateBack={this.props.onNavigateBack}
         renderTitleComponent={() => {
           return (
-            <NavigationHeader.Title textStyle={{color: '#ffffff'}}>
+            <NavigationHeader.Title textStyle={{color: '#ffffff', fontFamily: 'Futura'}}>
               {sceneProps.scene.route.title}
             </NavigationHeader.Title>
           );
@@ -57,7 +57,7 @@ const NavigationView = React.createClass({
       // const {route} = sceneProps.scene.route
       console.log(sceneProps.scene.route);
       if (sceneProps.scene.route.key === 'Color') {
-        return (<ColorView index={1} dispatch={() => this.render()} emoji={sceneProps.scene.route.emoji} />);
+        return (<ColorView index={1} dispatch={() => this.render()} color="#00AFD1" emoji={sceneProps.scene.route.emoji} />);
       }
     return (
       <View style={styles.sceneContainer}>
