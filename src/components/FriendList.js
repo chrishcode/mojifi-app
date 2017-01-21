@@ -141,8 +141,8 @@ class FriendList extends Component {
         renderRow={(friend) => { return this._renderFriendsRow(friend) }}
         renderFooter={() => 
         <View style={{alignItems: 'center', marginBottom: 20, marginTop: 20}}>
-        <Text style={{fontSize: 14, fontFamily: 'Montserrat', color: '#ffffff'}}>An emoji is worth a thousand words.</Text>
-        <Text style={{fontSize: 14, fontFamily: 'Montserrat', color: '#ffffff', marginTop: 5, marginBottom: 20,}}>Share them with your friends.</Text>
+        <Text style={{fontSize: 14, fontWeight: '400', fontFamily: 'Montserrat Alternates', color: '#ffffff'}}>An emoji is worth a thousand words.</Text>
+        <Text style={{fontSize: 14,fontWeight: '400', fontFamily: 'Montserrat Alternates', color: '#ffffff', marginTop: 5, marginBottom: 20,}}>Share them with your friends.</Text>
           <TouchableOpacity
             style={styles.sendBtn}
             activeOpacity={0.8}
@@ -153,7 +153,7 @@ class FriendList extends Component {
               subject: "Mojifi - An emoji is worth a thousand words." //  for email
             }).catch((err) => { err && console.log(err); })}}
             >
-            <Text style={{fontSize: 14, fontFamily: 'Montserrat', color: this.props.color}}>Invite Friends</Text>
+            <Text style={{fontSize: 14, fontWeight: '900', fontFamily: 'Montserrat Alternates', color: this.props.color}}>Invite Friends</Text>
           </TouchableOpacity>
         </View>}
       />
@@ -203,10 +203,10 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontWeight: '600',
+    fontWeight: '900',
     color: "#ffffff",
-    fontFamily: "Montserrat",
-    fontSize: 15,
+    fontFamily: "Montserrat Alternates",
+    fontSize: 16,
     marginLeft: 10,
   },
 
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
   timestamp: {
     color: "#ffffff",
     fontSize: 10,
-    fontFamily: 'Montserrat',
+    fontFamily: 'Montserrat Alternates',
     fontWeight: '400',
     marginTop: 5,
     marginLeft: 10,

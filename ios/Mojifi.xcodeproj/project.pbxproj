@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -27,6 +28,15 @@
 		76C27BBF52494A01BF642ECD /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B50F6964A1C42BCA714D472 /* MaterialIcons.ttf */; };
 		7F0C48A91E33678F004D3532 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F0C48A81E33678F004D3532 /* Social.framework */; };
 		7F0C48BE1E3367AA004D3532 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F0C48BD1E3367AA004D3532 /* MessageUI.framework */; };
+		7F53A3C01E3428F500A817AD /* MontserratAlternates-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F53A3B71E3428F500A817AD /* MontserratAlternates-Black.otf */; };
+		7F53A3C11E3428F500A817AD /* MontserratAlternates-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F53A3B81E3428F500A817AD /* MontserratAlternates-Bold.otf */; };
+		7F53A3C21E3428F500A817AD /* MontserratAlternates-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F53A3B91E3428F500A817AD /* MontserratAlternates-ExtraBold.otf */; };
+		7F53A3C31E3428F500A817AD /* MontserratAlternates-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F53A3BA1E3428F500A817AD /* MontserratAlternates-ExtraLight.otf */; };
+		7F53A3C41E3428F500A817AD /* MontserratAlternates-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F53A3BB1E3428F500A817AD /* MontserratAlternates-Light.otf */; };
+		7F53A3C51E3428F500A817AD /* MontserratAlternates-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F53A3BC1E3428F500A817AD /* MontserratAlternates-Medium.otf */; };
+		7F53A3C61E3428F500A817AD /* MontserratAlternates-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F53A3BD1E3428F500A817AD /* MontserratAlternates-Regular.otf */; };
+		7F53A3C71E3428F500A817AD /* MontserratAlternates-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F53A3BE1E3428F500A817AD /* MontserratAlternates-SemiBold.otf */; };
+		7F53A3C81E3428F500A817AD /* MontserratAlternates-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7F53A3BF1E3428F500A817AD /* MontserratAlternates-Thin.otf */; };
 		7FA8111A1E32F4B9004B1112 /* Montserrat-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7FA811111E32F4B9004B1112 /* Montserrat-Black.otf */; };
 		7FA8111B1E32F4B9004B1112 /* Montserrat-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7FA811121E32F4B9004B1112 /* Montserrat-Bold.otf */; };
 		7FA8111C1E32F4B9004B1112 /* Montserrat-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7FA811131E32F4B9004B1112 /* Montserrat-ExtraBold.otf */; };
@@ -212,6 +222,15 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7F0C48A81E33678F004D3532 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		7F0C48BD1E3367AA004D3532 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		7F53A3B71E3428F500A817AD /* MontserratAlternates-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MontserratAlternates-Black.otf"; path = "../../../Downloads/montserrat(1)/MontserratAlternates-Black.otf"; sourceTree = "<group>"; };
+		7F53A3B81E3428F500A817AD /* MontserratAlternates-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MontserratAlternates-Bold.otf"; path = "../../../Downloads/montserrat(1)/MontserratAlternates-Bold.otf"; sourceTree = "<group>"; };
+		7F53A3B91E3428F500A817AD /* MontserratAlternates-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MontserratAlternates-ExtraBold.otf"; path = "../../../Downloads/montserrat(1)/MontserratAlternates-ExtraBold.otf"; sourceTree = "<group>"; };
+		7F53A3BA1E3428F500A817AD /* MontserratAlternates-ExtraLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MontserratAlternates-ExtraLight.otf"; path = "../../../Downloads/montserrat(1)/MontserratAlternates-ExtraLight.otf"; sourceTree = "<group>"; };
+		7F53A3BB1E3428F500A817AD /* MontserratAlternates-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MontserratAlternates-Light.otf"; path = "../../../Downloads/montserrat(1)/MontserratAlternates-Light.otf"; sourceTree = "<group>"; };
+		7F53A3BC1E3428F500A817AD /* MontserratAlternates-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MontserratAlternates-Medium.otf"; path = "../../../Downloads/montserrat(1)/MontserratAlternates-Medium.otf"; sourceTree = "<group>"; };
+		7F53A3BD1E3428F500A817AD /* MontserratAlternates-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MontserratAlternates-Regular.otf"; path = "../../../Downloads/montserrat(1)/MontserratAlternates-Regular.otf"; sourceTree = "<group>"; };
+		7F53A3BE1E3428F500A817AD /* MontserratAlternates-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MontserratAlternates-SemiBold.otf"; path = "../../../Downloads/montserrat(1)/MontserratAlternates-SemiBold.otf"; sourceTree = "<group>"; };
+		7F53A3BF1E3428F500A817AD /* MontserratAlternates-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MontserratAlternates-Thin.otf"; path = "../../../Downloads/montserrat(1)/MontserratAlternates-Thin.otf"; sourceTree = "<group>"; };
 		7FA811111E32F4B9004B1112 /* Montserrat-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Black.otf"; path = "../../../Downloads/montserrat(1)/Montserrat-Black.otf"; sourceTree = "<group>"; };
 		7FA811121E32F4B9004B1112 /* Montserrat-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-Bold.otf"; path = "../../../Downloads/montserrat(1)/Montserrat-Bold.otf"; sourceTree = "<group>"; };
 		7FA811131E32F4B9004B1112 /* Montserrat-ExtraBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Montserrat-ExtraBold.otf"; path = "../../../Downloads/montserrat(1)/Montserrat-ExtraBold.otf"; sourceTree = "<group>"; };
@@ -362,6 +381,15 @@
 		13B07FAE1A68108700A75B9A /* Mojifi */ = {
 			isa = PBXGroup;
 			children = (
+				7F53A3B71E3428F500A817AD /* MontserratAlternates-Black.otf */,
+				7F53A3B81E3428F500A817AD /* MontserratAlternates-Bold.otf */,
+				7F53A3B91E3428F500A817AD /* MontserratAlternates-ExtraBold.otf */,
+				7F53A3BA1E3428F500A817AD /* MontserratAlternates-ExtraLight.otf */,
+				7F53A3BB1E3428F500A817AD /* MontserratAlternates-Light.otf */,
+				7F53A3BC1E3428F500A817AD /* MontserratAlternates-Medium.otf */,
+				7F53A3BD1E3428F500A817AD /* MontserratAlternates-Regular.otf */,
+				7F53A3BE1E3428F500A817AD /* MontserratAlternates-SemiBold.otf */,
+				7F53A3BF1E3428F500A817AD /* MontserratAlternates-Thin.otf */,
 				7FA8115C1E32F80B004B1112 /* Righteous-Regular.ttf */,
 				7FA811111E32F4B9004B1112 /* Montserrat-Black.otf */,
 				7FA811121E32F4B9004B1112 /* Montserrat-Bold.otf */,
@@ -746,24 +774,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F53A3C11E3428F500A817AD /* MontserratAlternates-Bold.otf in Resources */,
+				7F53A3C51E3428F500A817AD /* MontserratAlternates-Medium.otf in Resources */,
+				7F53A3C21E3428F500A817AD /* MontserratAlternates-ExtraBold.otf in Resources */,
 				7FA8111C1E32F4B9004B1112 /* Montserrat-ExtraBold.otf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				7FA811211E32F4B9004B1112 /* Montserrat-SemiBold.otf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				7FA8115D1E32F80B004B1112 /* Righteous-Regular.ttf in Resources */,
+				7F53A3C01E3428F500A817AD /* MontserratAlternates-Black.otf in Resources */,
 				8CF9215C7601418A9196E9B5 /* Entypo.ttf in Resources */,
 				7FA811221E32F4B9004B1112 /* Montserrat-Thin.otf in Resources */,
 				7FA8111D1E32F4B9004B1112 /* Montserrat-ExtraLight.otf in Resources */,
 				071590C08883478D974063E7 /* EvilIcons.ttf in Resources */,
 				7FA8111A1E32F4B9004B1112 /* Montserrat-Black.otf in Resources */,
+				7F53A3C81E3428F500A817AD /* MontserratAlternates-Thin.otf in Resources */,
+				7F53A3C71E3428F500A817AD /* MontserratAlternates-SemiBold.otf in Resources */,
 				7FA8111F1E32F4B9004B1112 /* Montserrat-Medium.otf in Resources */,
+				7F53A3C41E3428F500A817AD /* MontserratAlternates-Light.otf in Resources */,
 				327FF4C28B304A55B8D62433 /* FontAwesome.ttf in Resources */,
 				F350D25EAB6C4B228A3A3553 /* Foundation.ttf in Resources */,
 				0B849D3D84904E6C87D62FBE /* Ionicons.ttf in Resources */,
+				7F53A3C31E3428F500A817AD /* MontserratAlternates-ExtraLight.otf in Resources */,
 				76C27BBF52494A01BF642ECD /* MaterialIcons.ttf in Resources */,
 				9AD68C9FE0C44BE1812488DC /* Octicons.ttf in Resources */,
 				7FA8111B1E32F4B9004B1112 /* Montserrat-Bold.otf in Resources */,
 				DE1B3E808D534E7491C40551 /* SimpleLineIcons.ttf in Resources */,
+				7F53A3C61E3428F500A817AD /* MontserratAlternates-Regular.otf in Resources */,
 				F10B14A302754791AC4887C2 /* Zocial.ttf in Resources */,
 				7FA8111E1E32F4B9004B1112 /* Montserrat-Light.otf in Resources */,
 				7FA811201E32F4B9004B1112 /* Montserrat-Regular.otf in Resources */,
@@ -885,9 +922,7 @@
 				INFOPLIST_FILE = MojifiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pepperoni.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mojifi.app/Mojifi";
@@ -902,9 +937,7 @@
 				INFOPLIST_FILE = MojifiTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pepperoni.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mojifi.app/Mojifi";

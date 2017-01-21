@@ -92,7 +92,7 @@ const ColorView = React.createClass({
             style={styles.sendBtn}
             activeOpacity={0.8}
             onPress={() => {this.sendMojification()}}>
-            <Text style={{fontSize: 14, fontFamily: 'Montserrat', color: this.props.color}}>Send Mojification</Text>
+            <Text style={{fontSize: 14, fontWeight: '900', fontFamily: 'Montserrat Alternates', color: this.props.color}}>Send Mojification</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -112,9 +112,9 @@ const styles = StyleSheet.create({
     color: '#ffffff'
   },
   name: {
-    fontWeight: '600',
+    fontWeight: '900',
     color: "#ffffff",
-    fontFamily: "Montserrat",
+    fontFamily: "Montserrat Alternates",
     fontSize: 18,
     marginTop: -247,
     marginBottom: 247,
