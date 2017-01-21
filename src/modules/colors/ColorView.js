@@ -40,7 +40,7 @@ const ColorView = React.createClass({
   _renderPickerBackground() {
         if (this.state.showPickerBackground) {
             return (
-                <View style={{zIndex: 1, height: 670, width: 375, position: 'absolute',backgroundColor: this.props.color, flex: 1, justifyContent: 'center',alignItems: 'center',marginTop: -290,}} >
+                <View style={{zIndex: 1, height: 680, width: 375, position: 'absolute',backgroundColor: this.props.color, flex: 1, justifyContent: 'center',alignItems: 'center',marginTop: -290,}} >
                   <EmojiOverlay 
                     style={{backgroundColor: 'transparent', height: 300, marginLeft: 0, paddingLeft: 10, paddingRight: 10}} 
                     visible={this.state.showPicker}

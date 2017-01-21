@@ -21,14 +21,14 @@ const timeline = [
   {title: 'Henrik Lindblom', emoji: 'coffee', sender: true, opened: false, updatedAt: '2017-01-21 06:00:00'},
   {title: 'Alexander Brandemyr', emoji: 'heart', sender: true, opened: false, updatedAt: '2017-01-21 05:00:00'},
   {title: 'Kenny Lindblom', emoji: 'fist', sender: false, opened: true, updatedAt: '2017-01-21 03:00:00'},
-  {title: 'Kenny Lindblom', emoji: 'monkey', sender: false, opened: true, updatedAt: '2017-01-21 03:00:00'},
-  {title: 'Kenny Lindblom', emoji: 'frog', sender: true, opened: true, updatedAt: '2017-01-21 06:05:00'},
-  {title: 'Kenny Lindblom', emoji: 'smile', sender: false, opened: true, updatedAt: '2017-01-21 01:00:00'},
-  {title: 'Kenny Lindblom', emoji: 'truck', sender: true, opened: true, updatedAt: '2017-01-20 03:00:00'},
-  {title: 'Kenny Lindblom', emoji: 'computer', sender: true, opened: true, updatedAt: '2017-01-19 03:00:00'},
-  {title: 'Kenny Lindblom', emoji: 'pig', sender: false, opened: true, updatedAt: '2017-01-19 02:00:00'},
-  {title: 'Kenny Lindblom', emoji: 'apple', sender: false, opened: true, updatedAt: '2017-01-18 03:00:00'},
-  {title: 'Kenny Lindblom', emoji: ''}
+  {title: 'Petter Romhagen', emoji: 'monkey', sender: false, opened: true, updatedAt: '2017-01-21 03:00:00'},
+  {title: 'Erik Wahlström', emoji: 'frog', sender: true, opened: true, updatedAt: '2017-01-21 06:05:00'},
+  {title: 'Martin Gustafsson', emoji: 'smile', sender: false, opened: true, updatedAt: '2017-01-21 01:00:00'},
+  {title: 'Ben Pasternak', emoji: 'truck', sender: true, opened: true, updatedAt: '2017-01-20 03:00:00'},
+  {title: 'Ted Valentin', emoji: 'computer', sender: true, opened: true, updatedAt: '2017-01-19 03:00:00'},
+  {title: 'Justin Kan', emoji: 'pig', sender: false, opened: true, updatedAt: '2017-01-19 02:00:00'},
+  {title: 'Casey Neistat', emoji: 'apple', sender: false, opened: true, updatedAt: '2017-01-18 03:00:00'},
+  {title: 'Felix Kjellberg', emoji: ''}
 ]
 
 class FriendList extends Component {
