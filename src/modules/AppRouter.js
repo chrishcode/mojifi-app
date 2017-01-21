@@ -11,7 +11,7 @@ export default function AppRouter(props) {
   const key = props.scene.route.key;
 
   if (key === 'Counter') {
-    return <CounterViewContainer />;
+    return <CounterViewContainer color="#F27935" />;
   }
 
   if (key.indexOf('Color') === 0) {

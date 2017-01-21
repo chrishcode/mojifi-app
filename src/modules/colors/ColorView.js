@@ -3,6 +3,7 @@ import {
   Text,
   View,
   TouchableHighlight,
+  TouchableOpacity,
   StyleSheet
 } from 'react-native';
 
@@ -27,14 +28,43 @@ const ColorView = React.createClass({
     return {
       background: `rgba(${color()},${color()},${color()}, 1)`,
       showPicker: false,
-      selectedEmoji: emojiName.get("smile")
+      selectedEmoji: emojiName.get("smile"),
+      showPickerBackground: false,
     };
   },
+  togglePickerBackground() {
+    this.setState({
+        showPickerBackground: !this.state.showPickerBackground
+    });
+  },
+  _renderPickerBackground() {
+        if (this.state.showPickerBackground) {
+            return (
+                <View style={{zIndex: 1, height: 670, width: 375, position: 'absolute',backgroundColor: this.props.color, flex: 1, justifyContent: 'center',alignItems: 'center',marginTop: -290,}} >
+                  <EmojiOverlay 
+                    style={{backgroundColor: 'transparent', height: 300, marginLeft: 0, paddingLeft: 10, paddingRight: 10}} 
+                    visible={this.state.showPicker}
+                    onTapOutsize={() => this.setState({showPicker: false})}
+                    horizontal={true}
+                    onEmojiSelected={this._emojiSelected}
+                    hideClearButton={true}
+                    rows={5}/>
+                </View>
+            );
+        } else {
+            return null;
+        }
+    },
   _emojiSelected(emoji) {
+    this.togglePickerBackground();
     this.setState({
       selectedEmoji: emoji,
       showPicker: false,
     });
+  },
+  sendMojification() {
+   // this.props.dispatch(NavigationState.popRoute());
+   console.log('mojification sent');
   },
   onNextPress() {
     const index = this.props.index;
@@ -45,24 +75,25 @@ const ColorView = React.createClass({
   },
 
   render() {
-
     const index = this.props.index;
     const text = `View #${index}`;
     return (
-      <View style={{backgroundColor: this.props.color, flex: 1, justifyContent: 'center',alignItems: 'center',marginTop: -65,}} >
+      <View style={{paddingTop: 200, backgroundColor: this.props.color, flex: 1, justifyContent: 'center',alignItems: 'center',marginTop: -65,}} >
+        {this._renderPickerBackground()}
         <TouchableHighlight
           underlayColor="transparent"
-          onPress={() => this.setState({showPicker: true})}>
+          onPress={() => this.setState({showPicker: true, showPickerBackground: true})}>
           <Text style={{fontSize: 40}}>{this.state.selectedEmoji}</Text>
         </TouchableHighlight>
 
-        <EmojiOverlay 
-          style={{backgroundColor: 'transparent', height: 500, marginLeft: -10, paddingLeft: 15, paddingRight: 15}} 
-          visible={this.state.showPicker}
-          onTapOutsize={() => this.setState({showPicker: false})}
-          horizontal={true}
-          onEmojiSelected={this._emojiSelected}
-          hideClearButton={true}/>
+        <View style={{marginTop: 200}}>
+          <TouchableOpacity
+            style={styles.sendBtn}
+            activeOpacity={0.8}
+            onPress={() => {this.sendMojification()}}>
+            <Text style={{fontSize: 14, fontFamily: 'Futura', color: this.props.color}}>Send</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }
@@ -79,6 +110,15 @@ const styles = StyleSheet.create({
   text: {
     color: '#ffffff'
   },
+  sendBtn: {
+    width: 200,
+    height: 40,
+    backgroundColor: '#ffffff',
+    borderRadius: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+  }
 });
 
 export default ColorView;

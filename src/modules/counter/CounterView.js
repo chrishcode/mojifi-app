@@ -64,8 +64,8 @@ const CounterView = React.createClass({
       : null;
 
     return (
-      <View style={styles.container}>
-        <FriendList boredyo={(friend) => this.bored(friend)} />
+      <View style={{flex: 1, marginTop: -65, backgroundColor: this.props.color}}>
+        <FriendList color={this.props.color} boredyo={(friend) => this.bored(friend)} />
       </View>
     );
   }
@@ -81,9 +81,6 @@ const circle = {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    backgroundColor: '#F27935',
     marginTop: -65,
   },
   text: {

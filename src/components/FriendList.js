@@ -65,6 +65,16 @@ class FriendList extends Component {
         style={{marginTop: 60}}
         dataSource={this.state.timelineDataSource} 
         renderRow={(friend) => { return this._renderFriendsRow(friend) }}
+        renderFooter={() => 
+        <View style={{alignItems: 'center', marginBottom: 20, marginTop: 20}}>
+          <TouchableOpacity
+            style={styles.sendBtn}
+            activeOpacity={0.8}
+            onPress={() => {console.log('yipppyyy')}}
+            >
+            <Text style={{fontSize: 14, fontFamily: 'Futura', color: this.props.color}}>Invite Friends</Text>
+          </TouchableOpacity>
+        </View>}
       />
     );
   }
@@ -79,7 +89,15 @@ const styles = StyleSheet.create({
     height: 70,
     // backgroundColor: 'gray'
   },
-
+  sendBtn: {
+    width: 200,
+    height: 40,
+    backgroundColor: '#ffffff',
+    borderRadius: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+  },
   episodeWrap: {
     flex: 1,
     flexDirection: "row",
