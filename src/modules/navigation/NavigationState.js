@@ -28,6 +28,24 @@ export function popRoute() {
   return {type: POP_ROUTE};
 }
 
+let redColorTheme = [
+  '#721544',
+  '#962543',
+  '#B43C45',
+  '#CE4847',
+  '#F67A47'
+];
+
+let tealColorTheme = [
+  '#1BBC9B',
+  '#16A086',
+  '#1BA39C',
+  '#0B8389',
+  '#0F6177'
+];
+
+let randomColor = redColorTheme[Math.floor(Math.random()*redColorTheme.length)];
+
 // reducers for tabs and scenes are separate
 const initialState = fromJS({
   tabs: {
@@ -40,7 +58,7 @@ const initialState = fromJS({
   // Scenes for the `HomeTab` tab.
   HomeTab: {
     index: 0,
-    routes: [{key: 'Counter', title: 'Mojifi'}]
+    routes: [{key: 'Counter', title: 'Mojifi', color: randomColor}]
   },
   // Scenes for the `ProfileTab` tab.
   ProfileTab: {

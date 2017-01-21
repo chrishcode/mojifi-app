@@ -32,7 +32,9 @@ const CounterView = React.createClass({
     console.log(friend);
     this.props.dispatch(NavigationState.pushRoute({
       key: 'Color',
-      title: friend.friend.title,
+      title: '',
+      color: this.props.color,
+      name: friend.friend.title,
       emoji: friend.friend.emoji
     }));
   },

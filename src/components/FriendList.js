@@ -12,18 +12,22 @@ import {
 import _ from 'lodash';
 import Emoji from 'react-native-emoji';
 const emojiName = require("emoji-name-map");
+import Icon from 'react-native-vector-icons/MaterialIcons';
+var moment = require('moment');
+moment().format('YYYY-MM-DD HH:MM:SS');
+import * as snapshot from '../utils/snapshot';
 
 const timeline = [
-  {title: 'Henrik Lindblom', emoji: 'coffee'},
-  {title: 'Alexander Brandemyr', emoji: 'heart'},
-  {title: 'Kenny Lindblom', emoji: 'fist'},
-  {title: 'Kenny Lindblom', emoji: 'monkey'},
-  {title: 'Kenny Lindblom', emoji: 'frog'},
-  {title: 'Kenny Lindblom', emoji: 'smile'},
-  {title: 'Kenny Lindblom', emoji: 'truck'},
-  {title: 'Kenny Lindblom', emoji: 'computer'},
-  {title: 'Kenny Lindblom', emoji: 'pig'},
-  {title: 'Kenny Lindblom', emoji: 'apple'},
+  {title: 'Henrik Lindblom', emoji: 'coffee', sender: true, opened: false, updatedAt: '2017-01-21 06:00:00'},
+  {title: 'Alexander Brandemyr', emoji: 'heart', sender: true, opened: false, updatedAt: '2017-01-21 05:00:00'},
+  {title: 'Kenny Lindblom', emoji: 'fist', sender: false, opened: true, updatedAt: '2017-01-21 03:00:00'},
+  {title: 'Kenny Lindblom', emoji: 'monkey', sender: false, opened: true, updatedAt: '2017-01-21 03:00:00'},
+  {title: 'Kenny Lindblom', emoji: 'frog', sender: true, opened: true, updatedAt: '2017-01-21 06:05:00'},
+  {title: 'Kenny Lindblom', emoji: 'smile', sender: false, opened: true, updatedAt: '2017-01-21 01:00:00'},
+  {title: 'Kenny Lindblom', emoji: 'truck', sender: true, opened: true, updatedAt: '2017-01-20 03:00:00'},
+  {title: 'Kenny Lindblom', emoji: 'computer', sender: true, opened: true, updatedAt: '2017-01-19 03:00:00'},
+  {title: 'Kenny Lindblom', emoji: 'pig', sender: false, opened: true, updatedAt: '2017-01-19 02:00:00'},
+  {title: 'Kenny Lindblom', emoji: 'apple', sender: false, opened: true, updatedAt: '2017-01-18 03:00:00'},
   {title: 'Kenny Lindblom', emoji: ''}
 ]
 
@@ -45,18 +49,86 @@ class FriendList extends Component {
     });
   }
     _renderFriendsRow(friend) {
-    return (
-      <TouchableOpacity style={styles.episodeRow} onPress={(event) => this.bored(friend)}>
-        <View style={styles.episodeWrap}>
-          <View style={styles.episodeInfo}>
-            <View style={styles.topInfo}>
-              <Text style={styles.title}>{friend.title}</Text>
-              <Text style={styles.emoji}>{emojiName.get(friend.emoji)}</Text>
+      if(!friend.hasOwnProperty('sender')){
+        return (
+          <TouchableOpacity style={styles.episodeRow} onPress={(event) => this.bored(friend)}>
+            <View style={styles.episodeWrap}>
+              <View style={styles.episodeInfo}>
+                <View style={styles.topInfo}>
+                  <View style={{flexDirection: 'row'}}>
+                    <Icon style={styles.icon} name="account-box" size={20} color="#ffffff" />
+                  <View>
+                    <Text style={styles.title}>{friend.title}</Text>
+                    <Text style={styles.timestamp}>No mojifications yet</Text>
+                  </View>
+                  </View>
+                  <Text style={styles.emoji}>{emojiName.get(friend.emoji)}</Text>
+                </View>
+              </View>
+            </View>
+          </TouchableOpacity>
+        )
+      }
+      if (friend.sender == true && friend.opened == true) {
+      return (
+          <TouchableOpacity style={styles.episodeRow} onPress={(event) => this.bored(friend)}>
+            <View style={styles.episodeWrap}>
+              <View style={styles.episodeInfo}>
+                <View style={styles.topInfo}>
+                  <View style={{flexDirection: 'row'}}>
+                    <Icon style={styles.icon} name="label-outline" size={20} color="#ffffff" />
+                    <View>
+                      <Text style={styles.title}>{friend.title}</Text>
+                      <Text style={styles.timestamp}>Opened {moment(friend.updatedAt).fromNow()}</Text>
+                    </View>
+                  </View>
+                  <Text style={styles.emoji}>{emojiName.get(friend.emoji)}</Text>
+                </View>
+              </View>
+            </View>
+          </TouchableOpacity>
+        )
+      }
+      if (friend.sender == true) {
+        return (
+          <TouchableOpacity style={styles.episodeRow} onPress={(event) => this.bored(friend)}>
+            <View style={styles.episodeWrap}>
+              <View style={styles.episodeInfo}>
+                <View style={styles.topInfo}>
+                  <View style={{flexDirection: 'row'}}>
+                    <Icon style={styles.icon} name="label" size={20} color="#ffffff" />
+                    <View>
+                      <Text style={styles.title}>{friend.title}</Text>
+                      <Text style={styles.timestamp}>Sent {moment(friend.updatedAt).fromNow()}</Text>
+                    </View>
+                  </View>
+                  <Text style={styles.emoji}>{emojiName.get(friend.emoji)}</Text>
+                </View>
+              </View>
+            </View>
+          </TouchableOpacity>
+        )
+      }
+    else {
+      return (
+        <TouchableOpacity style={styles.episodeRow} onPress={(event) => this.bored(friend)}>
+          <View style={styles.episodeWrap}>
+            <View style={styles.episodeInfo}>
+              <View style={styles.topInfo}>
+                <View style={{flexDirection: 'row'}}>
+                  <Icon style={styles.icon} name="check-box-outline-blank" size={20} color="#ffffff" />
+                  <View>
+                      <Text style={styles.title}>{friend.title}</Text>
+                      <Text style={styles.timestamp}>Received {moment(friend.updatedAt).fromNow()}</Text>
+                  </View>
+                </View>
+                <Text style={styles.emoji}>{emojiName.get(friend.emoji)}</Text>
+              </View>
             </View>
           </View>
-        </View>
-      </TouchableOpacity>
-    )
+        </TouchableOpacity>
+      )
+    }
   }
   render() {
     // renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
@@ -67,12 +139,14 @@ class FriendList extends Component {
         renderRow={(friend) => { return this._renderFriendsRow(friend) }}
         renderFooter={() => 
         <View style={{alignItems: 'center', marginBottom: 20, marginTop: 20}}>
+        <Text style={{fontSize: 14, fontFamily: 'Montserrat', color: '#ffffff'}}>An emoji is worth a thousand words.</Text>
+        <Text style={{fontSize: 14, fontFamily: 'Montserrat', color: '#ffffff', marginTop: 5, marginBottom: 20,}}>Share them with your friends.</Text>
           <TouchableOpacity
             style={styles.sendBtn}
             activeOpacity={0.8}
-            onPress={() => {console.log('yipppyyy')}}
+            onPress={() => {snapshot.clearSnapshot()}}
             >
-            <Text style={{fontSize: 14, fontFamily: 'Futura', color: this.props.color}}>Invite Friends</Text>
+            <Text style={{fontSize: 14, fontFamily: 'Montserrat', color: this.props.color}}>Invite Friends</Text>
           </TouchableOpacity>
         </View>}
       />
@@ -88,6 +162,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 70,
     // backgroundColor: 'gray'
+  },
+  icon: {
+    marginLeft: 10,
+    marginTop: 7,
   },
   sendBtn: {
     width: 200,
@@ -118,9 +196,9 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontWeight: "bold",
+    fontWeight: '600',
     color: "#ffffff",
-    fontFamily: "Futura",
+    fontFamily: "Montserrat",
     fontSize: 15,
     marginLeft: 10,
   },
@@ -129,6 +207,15 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     fontFamily: "Futura",
     fontSize: 28,
+  },
+
+  timestamp: {
+    color: "#ffffff",
+    fontSize: 10,
+    fontFamily: 'Montserrat',
+    fontWeight: '400',
+    marginTop: 5,
+    marginLeft: 10,
   },
 
   description: {

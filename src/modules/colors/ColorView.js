@@ -80,6 +80,7 @@ const ColorView = React.createClass({
     return (
       <View style={{paddingTop: 200, backgroundColor: this.props.color, flex: 1, justifyContent: 'center',alignItems: 'center',marginTop: -65,}} >
         {this._renderPickerBackground()}
+        <Text style={styles.name}>{this.props.name}</Text>
         <TouchableHighlight
           underlayColor="transparent"
           onPress={() => this.setState({showPicker: true, showPickerBackground: true})}>
@@ -91,7 +92,7 @@ const ColorView = React.createClass({
             style={styles.sendBtn}
             activeOpacity={0.8}
             onPress={() => {this.sendMojification()}}>
-            <Text style={{fontSize: 14, fontFamily: 'Futura', color: this.props.color}}>Send</Text>
+            <Text style={{fontSize: 14, fontFamily: 'Montserrat', color: this.props.color}}>Send</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -109,6 +110,14 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#ffffff'
+  },
+  name: {
+    fontWeight: '600',
+    color: "#ffffff",
+    fontFamily: "Montserrat",
+    fontSize: 15,
+    marginTop: -247,
+    marginBottom: 247,
   },
   sendBtn: {
     width: 200,

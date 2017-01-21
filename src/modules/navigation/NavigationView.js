@@ -13,6 +13,7 @@ const {
 import AppRouter from '../AppRouter';
 import TabBar from '../../components/TabBar';
 import ColorView from '../../modules/colors/ColorView';
+import * as snapshot from '../../utils/snapshot';
 
 // Customize bottom tab bar height here if desired
 const TAB_BAR_HEIGHT = 0;
@@ -43,7 +44,7 @@ const NavigationView = React.createClass({
         onNavigateBack={this.props.onNavigateBack}
         renderTitleComponent={() => {
           return (
-            <NavigationHeader.Title textStyle={{color: '#ffffff', fontFamily: 'Futura'}}>
+            <NavigationHeader.Title textStyle={{color: '#ffffff', fontSize: 26, fontFamily: 'Righteous'}}>
               {sceneProps.scene.route.title}
             </NavigationHeader.Title>
           );
@@ -57,8 +58,9 @@ const NavigationView = React.createClass({
       // const {route} = sceneProps.scene.route
       console.log(sceneProps.scene.route);
       if (sceneProps.scene.route.key === 'Color') {
-        return (<ColorView index={1} dispatch={() => this.render()} color="#00AFD1" emoji={sceneProps.scene.route.emoji} />);
+        return (<ColorView index={1} dispatch={() => this.render()} color={sceneProps.scene.route.color} name={sceneProps.scene.route.name} emoji={sceneProps.scene.route.emoji} />);
       }
+    snapshot.clearSnapshot()
     return (
       <View style={styles.sceneContainer}>
         {AppRouter(sceneProps)}
