@@ -16,6 +16,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 var moment = require('moment');
 moment().format('YYYY-MM-DD HH:MM:SS');
 import * as snapshot from '../utils/snapshot';
+import Share, {ShareSheet, Button} from 'react-native-share';
 
 const timeline = [
   {title: 'Henrik Lindblom', emoji: 'coffee', sender: true, opened: false, updatedAt: '2017-01-21 06:00:00'},
@@ -39,6 +40,7 @@ class FriendList extends Component {
       timelineDataSource: ds.cloneWithRows(timeline)
     }
   }
+
   bored(friend) {
     // this.props.dispatch(NavigationState.pushRoute({
     //   key: 'Color',
@@ -144,7 +146,12 @@ class FriendList extends Component {
           <TouchableOpacity
             style={styles.sendBtn}
             activeOpacity={0.8}
-            onPress={() => {snapshot.clearSnapshot()}}
+            onPress={() => {Share.open({
+              title: "Mojifi - An emoji is worth a thousand words.",
+              message: "An emoji is worth a thousand words. Share them with friends and family to let them know what's happening.",
+              url: "http://christopherwohlfarth.com/",
+              subject: "Mojifi - An emoji is worth a thousand words." //  for email
+            }).catch((err) => { err && console.log(err); })}}
             >
             <Text style={{fontSize: 14, fontFamily: 'Montserrat', color: this.props.color}}>Invite Friends</Text>
           </TouchableOpacity>
