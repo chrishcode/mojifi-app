@@ -58,7 +58,7 @@ const NavigationView = React.createClass({
       // const {route} = sceneProps.scene.route
       console.log(sceneProps.scene.route);
       if (sceneProps.scene.route.key === 'Color') {
-        return (<ColorView index={1} dispatch={() => this.render()} color={sceneProps.scene.route.color} name={sceneProps.scene.route.name} emoji={sceneProps.scene.route.emoji} />);
+        return (<ColorView {...sceneProps} index={sceneProps.scene.index} dispatch={() => {}} color={sceneProps.scene.route.color} name={sceneProps.scene.route.name} emoji={sceneProps.scene.route.emoji} />);
       }
     snapshot.clearSnapshot()
     return (

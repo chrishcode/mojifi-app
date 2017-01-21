@@ -65,12 +65,12 @@ const ColorView = React.createClass({
   sendMojification() {
    // this.props.dispatch(NavigationState.popRoute());
    console.log('mojification sent');
+   console.log(this.props);
   },
   onNextPress() {
     const index = this.props.index;
     this.props.dispatch(NavigationState.pushRoute({
-      key: `Color_${index + 1}`,
-      title: `Color Screen #${index + 1}`
+      key: 'Counter',
     }));
   },
 
@@ -92,7 +92,7 @@ const ColorView = React.createClass({
             style={styles.sendBtn}
             activeOpacity={0.8}
             onPress={() => {this.sendMojification()}}>
-            <Text style={{fontSize: 14, fontFamily: 'Montserrat', color: this.props.color}}>Send</Text>
+            <Text style={{fontSize: 14, fontFamily: 'Montserrat', color: this.props.color}}>Send Mojification</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: "#ffffff",
     fontFamily: "Montserrat",
-    fontSize: 15,
+    fontSize: 18,
     marginTop: -247,
     marginBottom: 247,
   },

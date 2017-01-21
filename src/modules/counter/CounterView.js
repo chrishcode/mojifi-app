@@ -28,6 +28,9 @@ const CounterView = React.createClass({
   random() {
     this.props.dispatch(CounterState.random());
   },
+  goBack() {
+    this.props.dispatch(NavigationState.popRoute());
+  },
   bored(friend) {
     console.log(friend);
     this.props.dispatch(NavigationState.pushRoute({
