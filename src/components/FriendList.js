@@ -19,7 +19,7 @@ import * as snapshot from '../utils/snapshot';
 import Share, {ShareSheet, Button} from 'react-native-share';
 
 const timeline = [
-  {title: 'Henrik Lindblom', emoji: 'coffee', sender: true, opened: false, updatedAt: '2017-01-21 06:00:00'},
+  {senderName: 'Henrik Lindblom', emoji: 'U+1F601', role: 'receiver', "created_at": "2017-01-25 05:27:04"},
   {title: 'Alexander Brandemyr', emoji: 'heart', sender: true, opened: false, updatedAt: '2017-01-21 05:00:00'},
   {title: 'Kenny Lindblom', emoji: 'fist', sender: false, opened: true, updatedAt: '2017-01-21 03:00:00'},
   {title: 'Petter Romhagen', emoji: 'monkey', sender: false, opened: true, updatedAt: '2017-01-21 03:00:00'},
@@ -32,61 +32,27 @@ const timeline = [
   {title: 'Felix Kjellberg', emoji: ''}
 ]
 
-const timeline2 = [
-  {
-    "id": 2,
-    "sender": 3,
-    "receiver": 1,
-    "emoji": "U+1F601",
-    "created_at": "2017-01-25 05:27:04",
-    "updated_at": "2017-01-26 05:27:08",
-    "role": "receiver",
-    "senderName": "Sebastian Marcusson"
-  },
-  {
-    "id": 1,
-    "sender": 1,
-    "receiver": 2,
-    "emoji": "U+1F61A",
-    "created_at": "2017-01-24 05:27:04",
-    "updated_at": "2017-01-27 06:25:36",
-    "role": "sender",
-    "receiverName": "Peter Asplund"
-  },
-  {
-    "name": "Erik Wahlström",
-    "role": null,
-    "userId": 5
-  },
-  {
-    "name": "Petter Romhagen",
-    "role": null,
-    "userId": 4
-  }
-]
-
 class FriendList extends Component {
   constructor(props) {
     super(props)
-    var data = this.getMojificationsFromApiAsync()
-    // console.log(data)
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.state = {
       timelineDataSource: ds.cloneWithRows(timeline),
-      // data: this.getMojificationsFromApiAsync()
     }
   }
 
   componentDidMount() {
-    this.setState({ data: this.getMojificationsFromApiAsync()})
+    var data = this.getMojificationsFromApiAsync();
+    this.setState({
+      timelineDataSource: this.state.timelineDataSource.cloneWithRows(data)
+    });
   }
 
   getMojificationsFromApiAsync() {
     return fetch('http://127.0.0.1:8000/api/users/1/mojifications')
       .then((response) => response.json())
       .then((responseJson) => {
-        // console.log(responseJson);
-        // console.log(this.state.data);
+        console.log(responseJson);
         return responseJson;
       })
       .catch((error) => {
@@ -186,7 +152,6 @@ class FriendList extends Component {
     }
   }
   render() {
-    console.log(this.state.data);
     // renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
     return (
       <ListView
