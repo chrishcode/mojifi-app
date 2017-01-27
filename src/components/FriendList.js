@@ -32,13 +32,66 @@ const timeline = [
   {title: 'Felix Kjellberg', emoji: ''}
 ]
 
+const timeline2 = [
+  {
+    "id": 2,
+    "sender": 3,
+    "receiver": 1,
+    "emoji": "U+1F601",
+    "created_at": "2017-01-25 05:27:04",
+    "updated_at": "2017-01-26 05:27:08",
+    "role": "receiver",
+    "senderName": "Sebastian Marcusson"
+  },
+  {
+    "id": 1,
+    "sender": 1,
+    "receiver": 2,
+    "emoji": "U+1F61A",
+    "created_at": "2017-01-24 05:27:04",
+    "updated_at": "2017-01-27 06:25:36",
+    "role": "sender",
+    "receiverName": "Peter Asplund"
+  },
+  {
+    "name": "Erik Wahlström",
+    "role": null,
+    "userId": 5
+  },
+  {
+    "name": "Petter Romhagen",
+    "role": null,
+    "userId": 4
+  }
+]
+
 class FriendList extends Component {
   constructor(props) {
     super(props)
+    var data = this.getMojificationsFromApiAsync()
+    // console.log(data)
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.state = {
-      timelineDataSource: ds.cloneWithRows(timeline)
+      timelineDataSource: ds.cloneWithRows(timeline),
+      // data: this.getMojificationsFromApiAsync()
     }
+  }
+
+  componentDidMount() {
+    this.setState({ data: this.getMojificationsFromApiAsync()})
+  }
+
+  getMojificationsFromApiAsync() {
+    return fetch('http://127.0.0.1:8000/api/users/1/mojifications')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        // console.log(responseJson);
+        // console.log(this.state.data);
+        return responseJson;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   bored(friend) {
@@ -51,7 +104,7 @@ class FriendList extends Component {
     });
   }
     _renderFriendsRow(friend) {
-      if(!friend.hasOwnProperty('sender')){
+      if(friend.role == null){
         return (
           <TouchableOpacity style={styles.episodeRow} onPress={(event) => this.bored(friend)}>
             <View style={styles.episodeWrap}>
@@ -71,27 +124,27 @@ class FriendList extends Component {
           </TouchableOpacity>
         )
       }
-      if (friend.sender == true && friend.opened == true) {
-      return (
-          <TouchableOpacity style={styles.episodeRow} onPress={(event) => this.bored(friend)}>
-            <View style={styles.episodeWrap}>
-              <View style={styles.episodeInfo}>
-                <View style={styles.topInfo}>
-                  <View style={{flexDirection: 'row'}}>
-                    <Icon style={styles.icon} name="label-outline" size={20} color="#ffffff" />
-                    <View>
-                      <Text style={styles.title}>{friend.title}</Text>
-                      <Text style={styles.timestamp}>Opened {moment(friend.updatedAt).fromNow()}</Text>
-                    </View>
-                  </View>
-                  <Text style={styles.emoji}>{emojiName.get(friend.emoji)}</Text>
-                </View>
-              </View>
-            </View>
-          </TouchableOpacity>
-        )
-      }
-      if (friend.sender == true) {
+      // if (friend.role == 'sender' && friend.opened == true) {
+      // return (
+      //     <TouchableOpacity style={styles.episodeRow} onPress={(event) => this.bored(friend)}>
+      //       <View style={styles.episodeWrap}>
+      //         <View style={styles.episodeInfo}>
+      //           <View style={styles.topInfo}>
+      //             <View style={{flexDirection: 'row'}}>
+      //               <Icon style={styles.icon} name="label-outline" size={20} color="#ffffff" />
+      //               <View>
+      //                 <Text style={styles.title}>{friend.title}</Text>
+      //                 <Text style={styles.timestamp}>Opened {moment(friend.updatedAt).fromNow()}</Text>
+      //               </View>
+      //             </View>
+      //             <Text style={styles.emoji}>{emojiName.get(friend.emoji)}</Text>
+      //           </View>
+      //         </View>
+      //       </View>
+      //     </TouchableOpacity>
+      //   )
+      // }
+      if (friend.role == 'sender') {
         return (
           <TouchableOpacity style={styles.episodeRow} onPress={(event) => this.bored(friend)}>
             <View style={styles.episodeWrap}>
@@ -100,8 +153,8 @@ class FriendList extends Component {
                   <View style={{flexDirection: 'row'}}>
                     <Icon style={styles.icon} name="label" size={20} color="#ffffff" />
                     <View>
-                      <Text style={styles.title}>{friend.title}</Text>
-                      <Text style={styles.timestamp}>Sent {moment(friend.updatedAt).fromNow()}</Text>
+                      <Text style={styles.title}>{friend.receiverName}</Text>
+                      <Text style={styles.timestamp}>Sent {moment(friend.created_at).fromNow()}</Text>
                     </View>
                   </View>
                   <Text style={styles.emoji}>{emojiName.get(friend.emoji)}</Text>
@@ -120,8 +173,8 @@ class FriendList extends Component {
                 <View style={{flexDirection: 'row'}}>
                   <Icon style={styles.icon} name="check-box-outline-blank" size={20} color="#ffffff" />
                   <View>
-                      <Text style={styles.title}>{friend.title}</Text>
-                      <Text style={styles.timestamp}>Received {moment(friend.updatedAt).fromNow()}</Text>
+                      <Text style={styles.title}>{friend.senderName}</Text>
+                      <Text style={styles.timestamp}>Received {moment(friend.created_at).fromNow()}</Text>
                   </View>
                 </View>
                 <Text style={styles.emoji}>{emojiName.get(friend.emoji)}</Text>
@@ -133,6 +186,7 @@ class FriendList extends Component {
     }
   }
   render() {
+    console.log(this.state.data);
     // renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
     return (
       <ListView
