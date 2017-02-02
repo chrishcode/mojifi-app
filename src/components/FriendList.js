@@ -35,12 +35,31 @@ const timeline = [
 class FriendList extends Component {
   constructor(props) {
     super(props)
-    var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-    var data = this.getMojificationsFromApiAsync();
-    this.state = {
-      timelineDataSource: ds.cloneWithRows(timeline),
+    if (this.props.userMojifications) {
+      this.state = {
+        userMojifications: this.props.userMojifications
+      }
     }
-    console.log(this.state);
+    else {
+      var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+      this.state = {
+        userMojifications: ds.cloneWithRows(timeline),
+      }
+    }
+    // console.log(this.state);
+    // fetch('http://127.0.0.1:8000/api/users/' + this.props.authenticatedUser.id + '/mojifications')
+    //   .then((response) => response.json())
+    //   .then((responseJson) => {
+    //     console.log(responseJson);
+    //     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+    //     this.state = {
+    //       timelineDataSource: ds.cloneWithRows(responseJson),
+    //     }
+    //     // return responseJson;
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   }
 
   // componentWillMount() {
@@ -52,17 +71,17 @@ class FriendList extends Component {
   //   console.log(this.state.timelineDataSource);
   // }
 
-  getMojificationsFromApiAsync() {
-    return fetch('http://127.0.0.1:8000/api/users/1/mojifications')
-      .then((response) => response.json())
-      .then((responseJson) => {
-        console.log(responseJson);
-        return responseJson;
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
+  // getMojificationsFromApiAsync() {
+  //   return fetch('http://127.0.0.1:8000/api/users/' + this.props.authenticatedUser.id + '/mojifications')
+  //     .then((response) => response.json())
+  //     .then((responseJson) => {
+  //       console.log(responseJson);
+  //       return responseJson;
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }
 
   bored(friend) {
     // this.props.dispatch(NavigationState.pushRoute({
@@ -123,8 +142,8 @@ class FriendList extends Component {
                   <View style={{flexDirection: 'row'}}>
                     <Icon style={styles.icon} name="label" size={20} color="#ffffff" />
                     <View>
-                      <Text style={styles.title}>{friend.receiverName}</Text>
-                      <Text style={styles.timestamp}>Sent {moment(friend.created_at).fromNow()}</Text>
+                      <Text style={styles.title}>{friend.name}</Text>
+                      <Text style={styles.timestamp}>Sent {moment(friend.updated_at).fromNow()}</Text>
                     </View>
                   </View>
                   <Text style={styles.emoji}>{emojiName.get(emojione.toShort(friend.emoji))}</Text>
@@ -143,8 +162,8 @@ class FriendList extends Component {
                 <View style={{flexDirection: 'row'}}>
                   <Icon style={styles.icon} name="check-box-outline-blank" size={20} color="#ffffff" />
                   <View>
-                      <Text style={styles.title}>{friend.senderName}</Text>
-                      <Text style={styles.timestamp}>Received {moment(friend.created_at).fromNow()}</Text>
+                      <Text style={styles.title}>{friend.name}</Text>
+                      <Text style={styles.timestamp}>Received {moment(friend.updated_at).fromNow()}</Text>
                   </View>
                 </View>
                 <Text style={styles.emoji}>{emojiName.get(friend.emoji)}</Text>
@@ -160,7 +179,7 @@ class FriendList extends Component {
     return (
       <ListView
         style={{marginTop: 60}}
-        dataSource={this.state.timelineDataSource} 
+        dataSource={this.state.userMojifications} 
         renderRow={(friend) => { return this._renderFriendsRow(friend) }}
         renderFooter={() => 
         <View style={{alignItems: 'center', marginBottom: 20, marginTop: 20}}>

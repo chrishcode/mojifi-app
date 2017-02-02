@@ -58,9 +58,9 @@ const NavigationView = React.createClass({
       // const {route} = sceneProps.scene.route
       console.log(sceneProps.scene.route);
       if (sceneProps.scene.route.key === 'Color') {
-        return (<ColorView {...sceneProps} index={sceneProps.scene.index} dispatch={() => {}} color={sceneProps.scene.route.color} name={sceneProps.scene.route.name} emoji={sceneProps.scene.route.emoji} />);
+        return (<ColorView {...sceneProps} index={sceneProps.scene.index} dispatch={() => {}} color={sceneProps.scene.route.color} name={sceneProps.scene.route.name} emoji={sceneProps.scene.route.emoji} authenticatedUserId={sceneProps.scene.route.authenticatedUserId} userId={sceneProps.scene.route.userId} />);
       }
-    snapshot.clearSnapshot()
+    // snapshot.clearSnapshot()
     return (
       <View style={styles.sceneContainer}>
         {AppRouter(sceneProps)}

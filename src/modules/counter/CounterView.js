@@ -7,6 +7,7 @@ import {
   Image,
   Text,
   View,
+  ListView,
   processColor
 } from 'react-native';
 import FriendList from '../../components/FriendList';
@@ -26,6 +27,7 @@ const CounterView = React.createClass({
       showPickerBackground: true,
     };
   },
+
   togglePickerBackground() {
     this.setState({
         showPickerBackground: !this.state.showPickerBackground
@@ -44,14 +46,88 @@ const CounterView = React.createClass({
     this.props.dispatch(NavigationState.popRoute());
   },
   bored(friend) {
-    console.log(friend);
+    // console.log(friend);
     this.props.dispatch(NavigationState.pushRoute({
       key: 'Color',
       title: '',
       color: this.props.color,
-      name: friend.friend.title,
+      authenticatedUserId: this.state.authenticatedUser.id,
+      name: friend.friend.name,
+      userId: friend.friend.userId,
       emoji: friend.friend.emoji
     }));
+  },
+  authenticateUser() {
+    var user = this.state.user;
+    // console.log(user);
+    // https://graph.facebook.com/v2.8/10211483639342780?fields=name,friends&access_token=EAAY7qidii84BAJBZCplRj0JWMKQvBIPsbLSKCfwY3VcEZABru7JDEnCdk8tRrp5wVZB4NZCVZAP86RJRQUQZCLM1dlJxqMgF2II04Tdp2vSc7Y8k3IJVyMqe0Lfr1NtDz5y2KZCDA8i0oocuVQM9nvZCFUYRmmxQqpknPjZAd6IvvhxWfZBCrymHAYFL9xBCFhpkIZD
+    fetch('https://graph.facebook.com/v2.8/' + user.userId + '?fields=name,friends&access_token=' + user.token)
+      .then((response) => response.json())
+      .then((responseJson) => {
+        user = responseJson;
+        console.log(user);
+
+        var friends = [
+          {
+            "name": "Peter Asplund",
+            "id": "616272871"
+          },
+          {
+            "name": "Sebastian Marcusson",
+            "id": "10152327800288346"
+          }
+        ];
+        // var friends = user.friends.data;
+        var userFriendsIds = [];
+        // foreach(user.friends.data as friend);
+        for (i = 0; i < friends.length; i++) {
+          userFriendsIds.push(friends[i].id);
+        }
+        console.log(userFriendsIds);
+        // return responseJson;
+
+        fetch('http://127.0.0.1:8000/api/users', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: user.name,
+            fbId: user.id,
+            fbFriends: userFriendsIds
+          })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => { 
+          this.setState({
+            authenticatedUser: responseJson
+          });
+          console.log(this.state.authenticatedUser);
+
+          fetch('http://127.0.0.1:8000/api/users/' + this.state.authenticatedUser.id + '/mojifications')
+          .then((response) => response.json())
+          .then((responseJson) => {
+            // console.log(responseJson);
+            var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+            this.setState({
+              userMojifications: ds.cloneWithRows(responseJson),
+            });
+            console.log(this.state.userMojifications);
+            // return responseJson;
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+        })
+        .catch((error) => { 
+          console.error(error); 
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+    })
+
   },
 
   renderUserInfo() {
@@ -80,13 +156,8 @@ const CounterView = React.createClass({
           var _this = this;
             return (
                 <View style={{zIndex: 1, height: 680, width: 375, position: 'absolute',backgroundColor: this.props.color, flex: 1, justifyContent: 'center',alignItems: 'center',marginTop: 0,}} >
-                  <TouchableOpacity
-                    style={styles.sendBtn}
-                    activeOpacity={0.8}
-                    onPress={() => {this.togglePickerBackground()}}>
-                    <Text style={{fontSize: 14, fontWeight: '900', fontFamily: 'Montserrat Alternates', color: this.props.color}}>Sign in with Facebook</Text>
-                  </TouchableOpacity>
-
+                  <Text style={{fontSize: 14, fontWeight: '400', fontFamily: 'Montserrat Alternates', color: '#ffffff'}}>An emoji is worth a thousand words.</Text>
+        <Text style={{fontSize: 14,fontWeight: '400', fontFamily: 'Montserrat Alternates', color: '#ffffff', marginTop: 5, marginBottom: 20,}}>Share them with your friends.</Text>
                   <FBLogin style={{ marginBottom: 10, }}
                     ref={(fbLogin) => { this.fbLogin = fbLogin }}
                     permissions={["email","user_friends"]}
@@ -94,7 +165,12 @@ const CounterView = React.createClass({
                     onLogin={function(data){
                       console.log("Logged in!");
                       console.log(data);
-                      _this.setState({ user : data.credentials });
+                      _this.setState({ 
+                        user : data.credentials,
+                        showPickerBackground: false
+                      });
+                      // console.log(_this.state.user);
+                      _this.authenticateUser();
                     }}
                     onLogout={function(){
                       console.log("Logged out.");
@@ -132,10 +208,18 @@ const CounterView = React.createClass({
       ? {backgroundColor: '#eee'}
       : null;
 
+
+    if (this.state.userMojifications) {
+      return (
+        <View style={{flex: 1, marginTop: -65, backgroundColor: this.props.color}}>
+          <FriendList userMojifications={this.state.userMojifications} color={this.props.color} boredyo={(friend) => this.bored(friend)} />
+        </View>
+      )
+    }
+
     return (
       <View style={{flex: 1, marginTop: -65, backgroundColor: this.props.color}}>
         {this._renderPickerBackground()}
-        <FriendList color={this.props.color} boredyo={(friend) => this.bored(friend)} />
       </View>
     );
   }

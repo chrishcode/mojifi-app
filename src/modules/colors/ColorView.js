@@ -26,10 +26,11 @@ const ColorView = React.createClass({
   },
 
   getInitialState() {
+    console.log(this.props);
     return {
       background: `rgba(${color()},${color()},${color()}, 1)`,
       showPicker: false,
-      selectedEmoji: emojiName.get("smile"),
+      selectedEmoji: emojiName.get(this.props.emoji),
       showPickerBackground: false,
     };
   },
@@ -73,15 +74,16 @@ const ColorView = React.createClass({
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      sender: 5,
-      receiver: 1,
+      sender: this.props.authenticatedUserId,
+      receiver: this.props.userId,
       emoji: emojione.toShort(this.state.selectedEmoji)
     })
   })
     
     console.log('mojification sent');
     console.log(this.state.selectedEmoji);
-   // console.log(this.props);
+    console.log(this.props.authenticatedUserId);
+    console.log(this.props.userId);
   },
   onNextPress() {
     const index = this.props.index;
@@ -93,6 +95,7 @@ const ColorView = React.createClass({
   render() {
     const index = this.props.index;
     const text = `View #${index}`;
+    // console.log(this.props);
     return (
       <View style={{paddingTop: 200, backgroundColor: this.props.color, flex: 1, justifyContent: 'center',alignItems: 'center',marginTop: -65,}} >
         {this._renderPickerBackground()}
