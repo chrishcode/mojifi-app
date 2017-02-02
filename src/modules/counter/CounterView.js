@@ -19,6 +19,16 @@ const CounterView = React.createClass({
     loading: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired
   },
+  getInitialState() {
+    return {
+      showPickerBackground: true,
+    };
+  },
+  togglePickerBackground() {
+    this.setState({
+        showPickerBackground: !this.state.showPickerBackground
+    });
+  },
   increment() {
     this.props.dispatch(CounterState.increment());
   },
@@ -63,6 +73,22 @@ const CounterView = React.createClass({
       </View>
     );
   },
+    _renderPickerBackground() {
+        if (this.state.showPickerBackground) {
+            return (
+                <View style={{zIndex: 1, height: 680, width: 375, position: 'absolute',backgroundColor: this.props.color, flex: 1, justifyContent: 'center',alignItems: 'center',marginTop: 0,}} >
+                  <TouchableOpacity
+                    style={styles.sendBtn}
+                    activeOpacity={0.8}
+                    onPress={() => {this.togglePickerBackground()}}>
+                    <Text style={{fontSize: 14, fontWeight: '900', fontFamily: 'Montserrat Alternates', color: this.props.color}}>Sign in with Facebook</Text>
+                  </TouchableOpacity>
+                </View>
+            );
+        } else {
+            return null;
+        }
+    },
   render() {
     const loadingStyle = this.props.loading
       ? {backgroundColor: '#eee'}
@@ -70,6 +96,7 @@ const CounterView = React.createClass({
 
     return (
       <View style={{flex: 1, marginTop: -65, backgroundColor: this.props.color}}>
+        {this._renderPickerBackground()}
         <FriendList color={this.props.color} boredyo={(friend) => this.bored(friend)} />
       </View>
     );
@@ -90,6 +117,15 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#ffffff'
+  },
+  sendBtn: {
+    width: 200,
+    height: 40,
+    backgroundColor: '#ffffff',
+    borderRadius: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
   },
   userContainer: {
     justifyContent: 'center',
