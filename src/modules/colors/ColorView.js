@@ -11,6 +11,7 @@ import * as NavigationState from '../../modules/navigation/NavigationState';
 const { EmojiOverlay } = require('react-native-emoji-picker');
 import Emoji from 'react-native-emoji';
 const emojiName = require("emoji-name-map");
+import emojione from 'emojione';
 
 const color = () => Math.floor(255 * Math.random());
 
@@ -64,8 +65,23 @@ const ColorView = React.createClass({
   },
   sendMojification() {
    // this.props.dispatch(NavigationState.popRoute());
-   console.log('mojification sent');
-   console.log(this.props);
+   this._emojiSelected;
+  fetch('http://127.0.0.1:8000/api/mojifications', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      sender: 5,
+      receiver: 1,
+      emoji: emojione.toShort(this.state.selectedEmoji)
+    })
+  })
+    
+    console.log('mojification sent');
+    console.log(this.state.selectedEmoji);
+   // console.log(this.props);
   },
   onNextPress() {
     const index = this.props.index;

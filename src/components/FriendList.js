@@ -19,7 +19,7 @@ import * as snapshot from '../utils/snapshot';
 import Share, {ShareSheet, Button} from 'react-native-share';
 
 const timeline = [
-  {senderName: 'Henrik Lindblom', emoji: 'U+1F601', role: 'receiver', "created_at": "2017-01-25 05:27:04"},
+  {senderName: 'Henrik Lindblom', emoji: ":scream:", role: 'receiver', "created_at": "2017-01-25 05:27:04"},
   {title: 'Alexander Brandemyr', emoji: 'heart', sender: true, opened: false, updatedAt: '2017-01-21 05:00:00'},
   {title: 'Kenny Lindblom', emoji: 'fist', sender: false, opened: true, updatedAt: '2017-01-21 03:00:00'},
   {title: 'Petter Romhagen', emoji: 'monkey', sender: false, opened: true, updatedAt: '2017-01-21 03:00:00'},
@@ -36,17 +36,21 @@ class FriendList extends Component {
   constructor(props) {
     super(props)
     var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+    var data = this.getMojificationsFromApiAsync();
     this.state = {
       timelineDataSource: ds.cloneWithRows(timeline),
     }
+    console.log(this.state);
   }
 
-  componentDidMount() {
-    var data = this.getMojificationsFromApiAsync();
-    this.setState({
-      timelineDataSource: this.state.timelineDataSource.cloneWithRows(data)
-    });
-  }
+  // componentWillMount() {
+  //   var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
+  //   var data = this.getMojificationsFromApiAsync();
+  //   this.setState({
+  //     timelineDataSource: ds.cloneWithRows(data)
+  //   });
+  //   console.log(this.state.timelineDataSource);
+  // }
 
   getMojificationsFromApiAsync() {
     return fetch('http://127.0.0.1:8000/api/users/1/mojifications')
@@ -123,7 +127,7 @@ class FriendList extends Component {
                       <Text style={styles.timestamp}>Sent {moment(friend.created_at).fromNow()}</Text>
                     </View>
                   </View>
-                  <Text style={styles.emoji}>{emojiName.get(friend.emoji)}</Text>
+                  <Text style={styles.emoji}>{emojiName.get(emojione.toShort(friend.emoji))}</Text>
                 </View>
               </View>
             </View>
